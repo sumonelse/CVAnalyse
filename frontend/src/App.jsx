@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import Home from './pages/Home'
 
 const App = () => {
-    return (
-      <>
-        <h1 className='text-2xl'>CV Analyser</h1>
-      </>
-    )
+    const router = createBrowserRouter([
+      {
+        path: '/',
+        element: <Home />
+      }
+    ])
+    return <RouterProvider router={router} />
 }
 
 export default App
