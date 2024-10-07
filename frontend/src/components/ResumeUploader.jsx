@@ -47,7 +47,10 @@ const ResumeUploader = () => {
                         <h2 className="font-semibold text-2xl">
                             Drag & Drop a File here
                         </h2>
-                        <button onClick={handleSubmit} className="btn-primary">
+                        <button
+                            onClick={handleSubmit}
+                            className="btn btn-primary"
+                        >
                             Browse
                         </button>
                     </>
