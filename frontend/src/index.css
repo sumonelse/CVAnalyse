@@ -5,11 +5,24 @@
 :root {
     --primary-color: #0ea5e9;
     --btn-pd: 12px 15px;
+    --primary-shadow: 0 4px 6px rgba(14, 165, 233, 0.3),
+        0 2px 4px rgba(14, 165, 233, 0.2), 0 1px 3px rgba(14, 165, 233, 0.1);
+    --secondary-shadow: inset 0px 2px 4px rgba(255, 255, 255, 0.05),
+        inset -2px 2px 2px rgba(255, 255, 255, 0.02),
+        2px 2px 2px rgba(255, 255, 255, 0.02);
 }
 
-.btn-primary {
-    @apply text-white text-xl p-[--btn-pd] rounded-md bg-[--primary-color] cursor-pointer font-semibold shadow-primary;
+.btn {
+    @apply text-white text-xl p-[--btn-pd] rounded-md cursor-pointer font-semibold;
     transition: all 0.3s ease;
+}
+.btn-secondary {
+    background-color: #181818;
+    box-shadow: var(--secondary-shadow);
+}
+.btn-primary {
+    background-color: var(--primary-color);
+    box-shadow: var(--primary-shadow);
 }
 .btn-primary:hover {
     background-color: #0b90cd;
