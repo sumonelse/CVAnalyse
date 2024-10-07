@@ -1,5 +1,6 @@
 import express from "express"
 import resumeRouter from "./resume/resumeRoute.js"
+import companyRouter from "./company/companyRoute.js"
 
 const app = express()
 
@@ -12,5 +13,6 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/resume", resumeRouter)
+app.use("/api/company", companyRouter)
 
 export default app

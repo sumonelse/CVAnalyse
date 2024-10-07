@@ -21,7 +21,7 @@ const companySchema = new mongoose.Schema(
         },
         location: {
             type: String,
-            required: true,
+            // required: true,
         },
         jobsPosted: {
             type: [
