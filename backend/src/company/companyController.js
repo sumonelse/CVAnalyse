@@ -10,10 +10,13 @@ const registerCompany = async (req, res) => {
             return res.status(409).json({ message: "Company already exists" })
         }
 
+        // Hash the password asynchronously
+        const hashedPassword = await bcrypt.hash(password, 10)
+
         const company = await companyModel.create({
             name,
             email,
-            password: bcrypt.hashSync(password),
+            password: hashedPassword,
             phoneNumber,
         })
 
