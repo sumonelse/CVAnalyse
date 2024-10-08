@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Home from "./pages/Home"
 import CompanyRegister from "./components/CompanyRegister"
+import CompanyLogin from "./components/CompanyLogin"
 
 const App = () => {
     const router = createBrowserRouter([
@@ -9,8 +10,17 @@ const App = () => {
             element: <Home />,
         },
         {
-            path: "/company/register",
-            element: <CompanyRegister />,
+            path: "/company",
+            children: [
+                {
+                    path: "register",
+                    element: <CompanyRegister />,
+                },
+                {
+                    path: "login",
+                    element: <CompanyLogin />,
+                },
+            ],
         },
     ])
     return <RouterProvider router={router} />
