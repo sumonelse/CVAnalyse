@@ -18,7 +18,7 @@ const skillKeywords = [
     "C#",
     "Ruby",
     "PHP",
-    "Go",
+    // "Go",
     "Swift",
     "Kotlin",
     "Rust",
@@ -27,7 +27,7 @@ const skillKeywords = [
     "Elixir",
     "Clojure",
     "Perl",
-    "R",
+    // "R",
     "MATLAB",
     "Julia",
     "Lisp",
@@ -50,7 +50,7 @@ const skillKeywords = [
     "DigitalOcean",
     "Heroku",
     "EC2",
-    "S3",
+    // "S3",
     "Lambda",
     "Cloud Functions",
     "Kubernetes",
@@ -192,6 +192,11 @@ const skillKeywords = [
     "Game balancing",
     "Game mechanics",
     "Game theory",
+    "Communication",
+    "Time Management",
+    "Problem Solving",
+    "Adaptability",
+    "Teamwork",
 ]
 // Function to extract skills from text
 const extractSkills = (text) => {
