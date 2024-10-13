@@ -1,8 +1,13 @@
 import React, { useState } from "react"
 import { useDropzone } from "react-dropzone"
+import axios from "axios"
+import { useSkill } from "../context/SkillContext"
+import { useNavigate } from "react-router-dom"
 
 const ResumeUploader = () => {
     const [file, setFile] = useState(null)
+    const { skills, setSkills } = useSkill()
+    const navigate = useNavigate()
     // const [uploadResult, setUploadResult] = useStateate("")
 
     const onDrop = (acceptedFiles) => {
@@ -25,6 +30,23 @@ const ResumeUploader = () => {
 
         const formData = new FormData()
         formData.append("cvFile", file)
+
+        try {
+            const response = await axios.post(
+                `${import.meta.env.VITE_BACKEND_DOMAIN}/api/resume/analyze`,
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            )
+
+            setSkills(response.data.skills)
+            navigate("/skills")
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     return (
@@ -47,20 +69,18 @@ const ResumeUploader = () => {
                         <h2 className="font-semibold text-2xl">
                             Drag & Drop a File here
                         </h2>
-                        <button
-                            onClick={handleSubmit}
-                            className="btn btn-primary"
-                        >
-                            Browse
-                        </button>
+                        <button className="btn btn-secondary">Browse</button>
                     </>
                 )}
             </div>
 
             {/* Display the uploaded file name */}
             {file && (
-                <div className="file-details">
+                <div className="flex flex-col items-center gap-2">
                     <p>Selected file: {file.name}</p>
+                    <button onClick={handleSubmit} className="btn btn-primary">
+                        Analyze CV
+                    </button>
                 </div>
             )}
 
