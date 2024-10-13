@@ -58,7 +58,7 @@ const loginCompany = async (req, res) => {
                 companyId: company._id,
                 email: company.email,
             },
-            process.env.JWT_SECRET, // Ensure you have a secret key stored in your environment variables
+            process.env.JWT_SECRET,
             { expiresIn: "1d" }
         )
 
