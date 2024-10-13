@@ -1,21 +1,34 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
-import AuthContainer from "./AuthContainer"
+import { Link, useNavigate } from "react-router-dom"
+import FormContainer from "./FormContainer"
 import Input from "./Input"
+import axios from "axios"
 
 const CompanyRegister = () => {
     const [data, setData] = useState({})
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        // console.log(data)
+
+        try {
+            const response = await axios.post(
+                `${import.meta.env.VITE_BACKEND_DOMAIN}/api/company/register`,
+                data
+            )
+
+            console.log(response.data)
+            navigate("/jobs")
+        } catch (err) {
+            console.error(err)
+        }
     }
     return (
-        <AuthContainer
+        <FormContainer
             heading={
                 <span>
                     Create your Account
@@ -65,7 +78,7 @@ const CompanyRegister = () => {
                     <span className="text-[--primary-color]">Login</span>
                 </Link>
             </div>
-        </AuthContainer>
+        </FormContainer>
     )
 }
 
