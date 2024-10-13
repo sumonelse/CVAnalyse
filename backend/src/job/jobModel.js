@@ -31,7 +31,7 @@ const jobSchema = new mongoose.Schema(
         postedBy: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Company",
-            required: true,
+            // required: true,
         },
         applicants: [
             {
@@ -45,7 +45,7 @@ const jobSchema = new mongoose.Schema(
         },
         deadline: {
             type: Date,
-            required: true,
+            // required: true,
         },
     },
     { versionKey: false }
