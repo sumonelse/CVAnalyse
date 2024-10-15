@@ -50,7 +50,7 @@ const JobCreate = () => {
                 id={"description"}
                 text={"Description:"}
                 type={"text"}
-                placeholder={"e.g We want a UI/UX Desginer Having...."}
+                placeholder={"e.g We want a UI/UX Designer Having...."}
                 name={"description"}
                 handleChange={handleChange}
             />
