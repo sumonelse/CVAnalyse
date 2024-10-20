@@ -1,8 +1,9 @@
 import express from "express"
-import { createJob } from "./jobController.js"
+import { createJob, searchJobs } from "./jobController.js"
 
 const jobRouter = express.Router()
 
 jobRouter.post("/create", createJob)
+jobRouter.get('/search', searchJobs)
 
 export default jobRouter

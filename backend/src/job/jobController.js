@@ -71,4 +71,53 @@ const createJob = async (req, res) => {
     }
 }
 
-export { createJob }
+const searchJobs = async (req, res) => {
+    try {
+        // Extracting filters from query parameters
+        const { title, location, minSalary, maxSalary, requirements } = req.query;
+        
+        // Building the MongoDB query dynamically
+        let query = {};
+
+        // Filter by title (case-insensitive search)
+        if (title) {
+            query.title = { $regex: title, $options: 'i' };  // 'i' for case-insensitive
+        }
+
+        // Filter by location (exact match)
+        if (location) {
+            query.location = location;
+        }
+
+        // Filter by salary range
+        if (minSalary && maxSalary) {
+            query["salary.min"] = { $gte: Number(minSalary) };  // Greater than or equal to
+            query["salary.max"] = { $lte: Number(maxSalary) };  // Less than or equal to
+        }
+
+        // Filter by requirements (looking for any match in the array)
+        if (requirements) {
+            const reqArr = requirements.split(',').map(req => req.trim());
+            query.requirements = { $in: reqArr };  // Matches any of the given requirements
+        }
+
+        // Fetch jobs that match the query
+        const jobs = await jobModel.find(query);
+
+        console.log("query", query)
+
+        // If no jobs found, return appropriate message
+        if (jobs.length === 0) {
+            return res.status(404).json({ message: "No jobs found matching the criteria." });
+        }
+
+        // Send back the list of jobs
+        res.status(200).json(jobs);
+    } catch (error) {
+        console.log("Error in searching jobs", error);
+        res.status(500).json({ message: "Error in searching jobs" });
+    }
+};
+
+
+export { createJob, searchJobs }
